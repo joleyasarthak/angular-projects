@@ -1,0 +1,7 @@
+<div class="container">
+  <p class="text"> 
+    <span [class]="compare(letter,enteredText[i])" *ngFor="let letter of words.split(''); let i = index;">{{letter}}</span>
+  </p>
+  <input type="text" name="enteredText" [(ngModel)]="enteredText" />
+  <button type="button" (click)="reset()">Reset</button>
+</div>
