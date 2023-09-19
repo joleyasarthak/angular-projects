@@ -1,0 +1,17 @@
+<form (ngSubmit)="formSubmit()">
+  <div class="form-control">
+    <label for="text">Task</label>
+    <input type="text" name="task" [(ngModel)]="text" required />
+  </div>
+  <div class="form-control">
+    <label for="text">Date and Time: </label>
+    <input type="text" name="datetime" [(ngModel)]="datetime" required />
+  </div>
+  <input
+    type="submit"
+    value="Save Task"
+    [ngStyle]="{ 'margin-bottom': '15px' }"
+    class="btn btn-block"
+  />
+  <!-- {{ text }} -->
+</form>
