@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { generate } from 'random-words';
 
 @Component({
@@ -10,23 +10,30 @@ export class PlayComponent implements OnInit {
   words !: string;
   enteredText !: string;
   started !: boolean;
+  time !: number;
+  intervalId: any;
+  @ViewChild('myInput') myInput !: ElementRef;
   ngOnInit(): void {
     this.started = false;
     this.words = '';
     this.enteredText = '';
-    const tmp = generate(15);
+    this.time = 20;
+    const tmp = generate(20);
     tmp.forEach((word) => {
       this.words += (word + ' ');
     })
     console.log(this.words);
   }
-  start() {
+  startPlay() {
     this.started = true;
-    this.showText();
-  }
-  showText() {
-    if (!this.started) return 'text blur';
-    return 'text';
+    this.myInput.nativeElement.focus();   //send focus to input
+    this.intervalId = setInterval(() => {
+      this.time--;
+      if (this.time <= 0) {
+        alert(`WPM is: ${Math.ceil(this.enteredText.length / (1.69))}`)
+        this.reset();
+      }
+    }, 1000);
   }
   compare(correctLetter: string, enteredLetter: string | undefined): string {
     if (!enteredLetter) return 'pending';
@@ -34,6 +41,7 @@ export class PlayComponent implements OnInit {
   }
   reset() {
     this.enteredText = '';
+    clearInterval(this.intervalId);
     this.ngOnInit();
   }
 }

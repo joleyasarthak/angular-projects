@@ -84,6 +84,15 @@ footer {
     -webkit-filter: blur(5px);
 }
 
+.timer {
+    margin-top: 15px;
+    background-color: #555555;
+    width: 70px;
+    height: 60px;
+    /* border: 2px solid black; */
+    border-radius: 10px;
+}
+
 .buttons {
     display: flex;
     justify-content: space-around;
