@@ -1,5 +1,5 @@
 <div class="container">
-  <div [class]="started ? 'text' : 'text blur'"> 
+  <div class="text"> 
     <span [class]="compare(letter,enteredText[i])" *ngFor="let letter of words.split(''); let i = index;">{{letter}}</span>
   </div>
   <input type="text" #myInput name="enteredText" [(ngModel)]="enteredText" [readOnly]="!started"/>
